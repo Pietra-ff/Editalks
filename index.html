@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#174f61">
+  <meta name="description" content="Editalks: formação e oportunidades para fortalecer a arte local.">
+  <title>Editalks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #202526;
+      --muted: #62696a;
+      --paper: #f4eedf;
+      --teal: #174f61;
+      --teal-light: #75bfca;
+      --coral: #e35150;
+      --line: #d6d2c7;
+      --white: #fffefa;
+      --display: "Fraunces", Georgia, serif;
+      --body: "DM Sans", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #e4e1d9;
+      color: var(--ink);
+      font-family: var(--body);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .page-shell {
+      width: min(100%, 1440px);
+      margin: 0 auto;
+      background: var(--white);
+      overflow: hidden;
+      box-shadow: 0 12px 50px rgb(24 37 37 / 12%);
+    }
+    .hero {
+      position: relative;
+      min-height: 420px;
+      padding: 24px clamp(24px, 7vw, 100px) 52px;
+      color: white;
+      background: linear-gradient(112deg, #17495b 0%, #28788a 55%, #75bfca 100%);
+      isolation: isolate;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      right: -90px;
+      bottom: -170px;
+      width: 520px;
+      height: 350px;
+      border: 1px solid rgb(255 255 255 / 20%);
+      border-radius: 50%;
+      transform: rotate(-22deg);
+      box-shadow: 0 0 0 25px rgb(255 255 255 / 4%), 0 0 0 55px rgb(255 255 255 / 3%);
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 42px;
+    }
+    .topbar-links { display: flex; align-items: center; gap: clamp(22px, 4vw, 56px); }
+    .topbar .topbar-brand {
+      font-family: var(--display);
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .topbar a {
+      color: rgb(255 255 255 / 92%);
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 160ms ease;
+    }
+    .topbar a:hover { color: #ffe2ae; }
+    .topbar .login-link {
+      padding: 10px 22px;
+      border-radius: 3px;
+      background: var(--coral);
+      color: white;
+      box-shadow: 0 4px 0 rgb(133 37 39 / 28%);
+    }
+    .hero-content {
+      width: min(550px, 100%);
+      padding-top: 74px;
+      animation: rise-in 650ms both;
+    }
+    .hero-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 18px 4px;
+      padding: 7px 12px 8px 9px;
+      background: var(--paper);
+      color: #101719;
+      font-family: var(--display);
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 1;
+      transform: rotate(-2deg);
+    }
+    .megaphone-mark {
+      position: relative;
+      display: inline-block;
+      width: 22px;
+      height: 23px;
+      flex: 0 0 22px;
+    }
+    .megaphone-mark::before {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 2px;
+      width: 17px;
+      height: 13px;
+      background: currentColor;
+      clip-path: polygon(0 28%, 100% 0, 100% 100%, 0 72%);
+    }
+    .megaphone-mark::after {
+      content: "";
+      position: absolute;
+      bottom: 1px;
+      left: 7px;
+      width: 5px;
+      height: 9px;
+      background: currentColor;
+      transform: rotate(-18deg);
+      transform-origin: top;
+    }
+    .hero h1 {
+      max-width: 440px;
+      margin: 0 0 10px 4px;
+      font-family: var(--display);
+      font-size: clamp(23px, 3vw, 34px);
+      font-weight: 600;
+      line-height: 1.12;
+      text-wrap: balance;
+    }
+    .hero-copy { max-width: 430px; margin: 0 0 20px 4px; color: rgb(255 255 255 / 88%); font-size: 14px; line-height: 1.5; }
+    main { background: var(--paper); }
+    .section-wrap { padding: 24px clamp(22px, 5.5vw, 80px) 38px; }
+    .section-kicker {
+      display: inline-block;
+      margin: 0 0 18px;
+      padding: 3px 7px 4px;
+      background: #80cbd1;
+      color: #142a2e;
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .course-section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .course-section-head .section-kicker { margin: 0; }
+    .all-courses-link {
+      flex: 0 0 auto;
+      color: #c83f40;
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .all-courses-link:hover { color: var(--teal); }
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .course-card {
+      min-width: 0;
+      padding: 10px;
+      border: 1px solid #b6d3d2;
+      border-radius: 10px;
+      background: rgb(255 255 255 / 58%);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+    .course-card:hover { transform: translateY(-3px); box-shadow: 0 9px 20px rgb(27 68 71 / 9%); }
+    .course-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1.85 / 1;
+      border-radius: 5px;
+      object-fit: cover;
+    }
+    .course-card h3 {
+      margin: 10px 0 3px;
+      font-family: var(--display);
+      font-size: 17px;
+      line-height: 1.1;
+    }
+    .course-card p {
+      min-height: 32px;
+      margin: 0 0 9px;
+      color: #464d4e;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .course-meta { margin: 0 0 10px; color: var(--teal); font-size: 11px; font-weight: 700; }
+    .quick-links-section {
+      padding: 28px clamp(22px, 5.5vw, 80px) 38px;
+      border-top: 4px solid var(--white);
+      background: var(--paper);
+    }
+    .quick-links-group + .quick-links-group { margin-top: 20px; }
+    .quick-links-title {
+      width: fit-content;
+      margin: 0 0 12px;
+      border-bottom: 2px solid var(--coral);
+      font-family: var(--display);
+      font-size: 20px;
+      line-height: 1.15;
+    }
+    .quick-links-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .quick-link-card {
+      display: flex;
+      min-width: 0;
+      min-height: 122px;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 14px;
+      border: 1px solid #e6e2da;
+      border-radius: 6px;
+      background: #faf9f6;
+    }
+    .quick-link-card h4 {
+      margin: 0 0 4px;
+      font-family: var(--display);
+      font-size: 14px;
+      line-height: 1.15;
+    }
+    .quick-link-card p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+    .quick-link-card .button { min-height: 30px; margin-top: auto; }
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 34px;
+      padding: 8px 14px;
+      border: 0;
+      border-radius: 4px;
+      background: var(--coral);
+      color: white;
+      font: 700 12px/1 var(--body);
+      text-decoration: none;
+      transition: background 150ms ease, transform 150ms ease;
+    }
+    .button:hover { background: #c83f40; transform: translateY(-1px); }
+    .producer-section { padding-top: 4px; padding-bottom: 43px; }
+    .section-heading {
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700;
+      line-height: 1.05;
+    }
+    .section-heading::after {
+      content: "";
+      display: block;
+      width: 44px;
+      height: 3px;
+      margin-top: 9px;
+      background: var(--coral);
+    }
+    .producer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .producer-card {
+      display: flex;
+      min-height: 122px;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 16px;
+      border: 1px solid #e3dfd3;
+      border-radius: 6px;
+      background: #fffdf8;
+    }
+    .producer-card h3 {
+      margin: 0 0 5px;
+      font-family: var(--display);
+      font-size: 16px;
+      line-height: 1.1;
+    }
+    .producer-card p { margin: 0 0 12px; color: var(--muted); font-size: 11px; line-height: 1.35; }
+    .producer-card .button { margin-top: auto; min-height: 32px; }
+    .events-section { border-top: 4px solid var(--white); background: var(--paper); padding-top: 28px; padding-bottom: 46px; }
+    .section-intro { margin: 4px 0 22px; color: var(--muted); font-size: 14px; }
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .event-card {
+      display: flex;
+      min-height: 250px;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 22px;
+      border-radius: 10px;
+      background: #24292b;
+      color: white;
+    }
+    .event-card::before { content: ""; width: 48px; height: 3px; margin-bottom: 17px; background: var(--coral); }
+    .event-date { margin: 0; color: var(--coral); font-size: 14px; font-weight: 800; line-height: 1.3; }
+    .event-card h3 {
+      max-width: 240px;
+      margin: 15px 0 4px;
+      font-family: var(--display);
+      font-size: 20px;
+      line-height: 1.15;
+    }
+    .event-card p { margin: 0 0 20px; color: #d8dcda; font-size: 12px; }
+    .event-card .button { margin-top: auto; }
+    .profile-picker-section {
+      padding: 24px clamp(22px, 5.5vw, 80px) 24px;
+      border-top: 4px solid var(--white);
+      border-bottom: 48px solid var(--white);
+      background: #171d1e;
+      color: white;
+    }
+    .profile-picker-label { margin: 0 0 7px; color: #f18a79; font-size: 11px; font-weight: 800; }
+    .profile-picker-panel {
+      padding: 16px;
+      border: 1px solid #394345;
+      border-radius: 7px;
+      background: #101516;
+    }
+    .profile-picker-panel h2 { margin: 0 0 3px; font-family: var(--display); font-size: 21px; }
+    .profile-picker-panel p { margin: 0 0 12px; color: #d8dcda; font-size: 12px; }
+    .profile-picker-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .profile-picker-links a {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      padding: 7px 12px;
+      border: 1px solid #899191;
+      border-radius: 4px;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: border-color 150ms ease, background 150ms ease;
+    }
+    .profile-picker-links a:hover { border-color: var(--coral); background: var(--coral); }
+    footer { background: #171d1e; color: white; }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr 1fr;
+      gap: 35px;
+      padding: 35px clamp(22px, 5.5vw, 80px) 42px;
+    }
+    .footer-group h2 {
+      margin: 0 0 13px;
+      color: #a9c7c5;
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .footer-group p, .footer-group a {
+      display: block;
+      margin: 0 0 8px;
+      color: #e4e8e5;
+      font-size: 11px;
+      line-height: 1.45;
+      text-decoration: none;
+    }
+    .footer-group a:hover { color: #f18a79; }
+    .social-links { display: flex; gap: 9px; }
+    .social-links a {
+      display: grid;
+      width: 29px;
+      height: 29px;
+      place-items: center;
+      margin: 0;
+      border-radius: 50%;
+      background: #304044;
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .social-links a:nth-child(2) { background: #be4962; }
+    .social-links a:nth-child(3) { background: #e04b45; }
+    .social-links a:nth-child(4) { background: #1686a1; }
+    .social-links svg { display: block; width: 17px; height: 17px; fill: currentColor; }
+    .social-links .instagram-icon { fill: none; stroke: currentColor; stroke-width: 2; }
+    @keyframes rise-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 700px) {
+      .hero { min-height: 0; padding: 15px 22px 28px; }
+      .topbar { min-height: 34px; }
+      .topbar-links { gap: clamp(11px, 3vw, 22px); }
+      .topbar a { font-size: 10px; }
+      .topbar .topbar-brand { font-size: 15px; }
+      .topbar .login-link { padding: 8px 12px; }
+      .hero-content { padding-top: 42px; }
+      .hero-logo { margin-bottom: 14px; font-size: 22px; }
+      .hero h1 { max-width: 340px; font-size: 24px; }
+      .hero-copy { font-size: 11px; }
+      .section-wrap { padding: 18px 22px 28px; }
+      .section-kicker { margin-bottom: 12px; font-size: 14px; }
+      .course-section-head { margin-bottom: 12px; }
+      .all-courses-link { font-size: 9px; }
+      .course-grid { gap: 9px; }
+      .course-card { padding: 7px; border-radius: 8px; }
+      .course-card img { aspect-ratio: 1.45 / 1; }
+      .course-card h3 { margin-top: 7px; font-size: 13px; }
+      .course-card p { min-height: 36px; margin-bottom: 6px; font-size: 9px; }
+      .course-meta { margin-bottom: 7px; font-size: 8px; }
+      .button { min-height: 29px; padding: 7px 5px; font-size: 10px; }
+      .quick-links-section { padding: 20px 22px 28px; }
+      .quick-links-group + .quick-links-group { margin-top: 16px; }
+      .quick-links-title { margin-bottom: 9px; font-size: 17px; }
+      .quick-links-grid { gap: 7px; }
+      .quick-link-card { min-height: 96px; padding: 8px 6px; }
+      .quick-link-card h4 { font-size: 10px; }
+      .quick-link-card p { margin-bottom: 7px; font-size: 8px; }
+      .quick-link-card .button { min-height: 24px; font-size: 8px; }
+      .producer-section { padding-top: 1px; padding-bottom: 29px; }
+      .section-heading { font-size: 23px; }
+      .producer-grid { gap: 9px; margin-top: 13px; }
+      .producer-card { min-height: 108px; padding: 10px 8px; }
+      .producer-card h3 { font-size: 12px; }
+      .producer-card p { margin-bottom: 9px; font-size: 9px; }
+      .producer-card .button { min-height: 27px; font-size: 9px; }
+      .events-section { padding-top: 21px; padding-bottom: 31px; }
+      .section-intro { margin-bottom: 15px; font-size: 11px; }
+      .events-grid { gap: 10px; }
+      .event-card { min-height: 185px; padding: 13px 10px; border-radius: 8px; }
+      .event-card::before { width: 32px; margin-bottom: 12px; }
+      .event-date { font-size: 10px; }
+      .event-card h3 { margin-top: 10px; font-size: 14px; }
+      .event-card p { margin-bottom: 12px; font-size: 9px; }
+      .profile-picker-section { padding: 18px 22px 18px; border-bottom-width: 38px; }
+      .profile-picker-panel { padding: 12px; }
+      .profile-picker-panel h2 { font-size: 18px; }
+      .profile-picker-panel p { font-size: 10px; }
+      .profile-picker-links a { min-height: 31px; padding: 6px 9px; font-size: 10px; }
+      .footer-inner { grid-template-columns: 1.2fr 1fr 1fr; gap: 20px 12px; padding: 24px 22px 30px; }
+      .footer-group h2 { margin-bottom: 9px; font-size: 11px; }
+      .footer-group p, .footer-group a { font-size: 9px; }
+      .footer-group:last-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 370px) {
+      .topbar-links { gap: 8px; }
+      .topbar a { font-size: 9px; }
+      .topbar .topbar-brand { font-size: 13px; }
+      .topbar .login-link { padding: 7px 9px; }
+      .section-wrap { padding-right: 15px; padding-left: 15px; }
+      .course-card { padding: 5px; }
+      .event-card { padding-right: 8px; padding-left: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero" id="inicio">
+      <nav class="topbar" aria-label="Navegação principal">
+        <a class="topbar-brand" href="#inicio">Editalks</a>
+        <div class="topbar-links">
+          <a href="#inicio">Início</a>
+          <a href="#cursos">Cursos</a>
+          <a href="#eventos">Eventos</a>
+          <a href="#editais">Editais</a>
+          <a class="login-link" href="#contato">Entrar</a>
+        </div>
+      </nav>
+      <div class="hero-content">
+        <div class="hero-logo" role="img" aria-label="Editalks">
+          <span class="megaphone-mark" aria-hidden="true"></span>
+          <span>Editalks</span>
+        </div>
+        <h1>Descomplicando editais<br>para fortalecer a arte local</h1>
+        <p class="hero-copy">Cursos, oficinas e apoio a projetos para você transformar sua ideia em projeto e conquistar apoio cultural.</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="section-wrap" id="cursos" aria-labelledby="courses-title">
+        <div class="course-section-head">
+          <h2 class="section-kicker" id="courses-title">Cursos disponíveis</h2>
+          <a class="all-courses-link" href="pages/aluno.html#cursos">Ver todos os cursos →</a>
+        </div>
+        <div class="course-grid">
+          <article class="course-card">
+            <img src="images/producao-cultural.jpg" alt="Equipe criativa reunida em uma oficina colaborativa" loading="lazy">
+            <h3>Produção Cultural</h3>
+            <p>Como criar projetos que transformam ideias em realidade.</p>
+            <p class="course-meta">20 horas · Online</p>
+            <a class="button" href="#contato">Ver curso</a>
+          </article>
+          <article class="course-card">
+            <img src="images/comunicacao-criativa.jpg" alt="Pessoas reunidas à mesa em um encontro comunitário" loading="lazy">
+            <h3>Comunicação Criativa</h3>
+            <p>Da ideia ao projeto: aprenda a tirar seus planos do papel.</p>
+            <p class="course-meta">12 horas · Presencial</p>
+            <a class="button" href="#contato">Ver curso</a>
+          </article>
+          <article class="course-card">
+            <img src="images/gestao-de-projetos.jpg" alt="Grupo de pessoas participando de uma atividade cultural" loading="lazy">
+            <h3>Gestão de Projetos</h3>
+            <p>Ferramentas práticas para fortalecer iniciativas locais.</p>
+            <p class="course-meta">16 horas · Online</p>
+            <a class="button" href="#contato">Ver curso</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="quick-links-section" id="editais" aria-labelledby="quick-notices-title">
+        <div class="quick-links-group">
+          <h2 class="quick-links-title" id="quick-notices-title">Editais</h2>
+          <div class="quick-links-grid">
+            <article class="quick-link-card">
+              <h4>Cultura em Movimento</h4>
+              <p>Apoio para iniciativas.</p>
+              <a class="button" href="#editais">Ver edital</a>
+            </article>
+            <article class="quick-link-card">
+              <h4>Projetos Comunitários</h4>
+              <p>Oportunidades abertas.</p>
+              <a class="button" href="#editais">Ver edital</a>
+            </article>
+            <article class="quick-link-card">
+              <h4>Chamadas Abertas</h4>
+              <p>Inscreva seu projeto.</p>
+              <a class="button" href="#editais">Ver edital</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      
+
+      <section class="section-wrap events-section" id="eventos" aria-labelledby="events-title">
+        <h2 class="section-heading" id="events-title">Próximos eventos e oficinas</h2>
+        <p class="section-intro">O que está acontecendo agora na cidade.</p>
+        <div class="events-grid">
+          <article class="event-card">
+            <p class="event-date"><time datetime="2026-10-17">Sáb, 17 out · 16h</time></p>
+            <h3>Oficina de percussão</h3>
+            <p>Congregação · Músicos</p>
+            <a class="button" href="#contato">Saiba mais</a>
+          </article>
+          <article class="event-card">
+            <p class="event-date"><time datetime="2026-10-18">Dom, 18 out · 10h</time></p>
+            <h3>Roda de capoeira aberta</h3>
+            <p>Congregação · Capoeira</p>
+            <a class="button" href="#contato">Saiba mais</a>
+          </article>
+          <article class="event-card">
+            <p class="event-date"><time datetime="2026-10-24">Sáb, 24 out · 14h</time></p>
+            <h3>Laboratório de teatro</h3>
+            <p>Congregação · Teatro</p>
+            <a class="button" href="#contato">Saiba mais</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="profile-picker-section" aria-labelledby="profile-picker-title">
+        <p class="profile-picker-label">Se junte a nós!</p>
+        <div class="profile-picker-panel">
+          <h2 id="profile-picker-title">Qual é o seu papel na cultura?</h2>
+          <p>Escolha sua área de atuação</p>
+          <nav class="profile-picker-links" aria-label="Escolha seu perfil">
+            <a href="pages/orientador.html">Orientador</a>
+            <a href="pages/produtor.html">Produtor cultural</a>
+            <a href="pages/aluno.html">Aluno</a>
+          </nav>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contato">
+      <div class="footer-inner">
+        <section class="footer-group">
+          <h2>Contato</h2>
+          <p>email: editais.cultura@caiçara.com</p>
+        </section>
+        <nav class="footer-group" aria-label="Navegação do rodapé">
+          <h2>Navegação</h2>
+          <a href="#inicio">Início</a>
+          <a href="#cursos">Cursos</a>
+          <a href="#editais">Editais</a>
+          <a href="#eventos">Eventos</a>
+        </nav>
+        <nav class="footer-group" aria-label="Links importantes">
+          <h2>Links importantes</h2>
+          <a href="#editais">Termos de uso</a>
+          <a href="#editais">Política de privacidade</a>
+          <a href="#contato">Perguntas frequentes</a>
+        </nav>
+        <section class="footer-group">
+          <h2>Siga-nos</h2>
+          <div class="social-links" aria-label="Redes sociais">
+            <a href="https://facebook.com" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.4 21v-8.2h2.8l.4-3.2h-3.2v-2c0-.9.3-1.5 1.6-1.5h1.7V3.2c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.3v2.2H7.5v3.2h2.7V21h3.2Z"/></svg>
+            </a>
+            <a href="https://instagram.com" aria-label="Instagram">
+              <svg class="instagram-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.8" r=".8" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </section>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
